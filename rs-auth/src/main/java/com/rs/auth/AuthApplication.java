@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @Configuration
-@PropertySource("classpath:service.properties")
+@PropertySource({"classpath:credentials.properties", "classpath:service.properties"})
 @ComponentScan(basePackages = "com.rs.auth")
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class AuthApplication {

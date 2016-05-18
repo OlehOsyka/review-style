@@ -19,3 +19,7 @@ hs_err_pid*
 */out/
 *.iml
 /.idea/
+
+#Credentials
+application.key.properties
+credentials.properties
