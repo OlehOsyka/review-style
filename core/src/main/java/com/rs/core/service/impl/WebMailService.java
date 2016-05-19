@@ -3,7 +3,7 @@ package com.rs.core.service.impl;
 
 import com.rs.core.commons.dto.JsonApiResponse;
 import com.rs.core.commons.dto.mail.Email;
-import com.chi.core.service.web.BaseWebServiceClient;
+import com.rs.core.service.BaseWebServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;

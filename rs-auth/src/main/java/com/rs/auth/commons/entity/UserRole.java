@@ -1,7 +1,6 @@
 package com.rs.auth.commons.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -15,7 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Time: 5:45 PM
  */
 @Entity
-@Table(name = "user_roles")
+@Table(name = "user_roles",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_role_id", "role", "email"}))
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "roleId")
 public class UserRole implements Serializable {
 
@@ -25,9 +25,7 @@ public class UserRole implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_role_id",
-            unique = true,
-            nullable = false)
+    @Column(name = "user_role_id", nullable = false)
     public Integer getRoleId() {
         return roleId;
     }

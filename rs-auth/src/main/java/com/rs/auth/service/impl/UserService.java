@@ -4,7 +4,8 @@ import com.rs.auth.commons.entity.User;
 import com.rs.auth.commons.entity.UserRole;
 import com.rs.auth.persistence.dao.IUserRepository;
 import com.rs.auth.service.IUserService;
-import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +31,8 @@ import static com.rs.core.commons.utils.CryptUtils.md5;
 @Primary
 @Service
 public class UserService implements IUserService, UserDetailsService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private IUserRepository userRepository;
@@ -58,8 +61,12 @@ public class UserService implements IUserService, UserDetailsService {
         roles.add(ur2);
         roles.add(ur3);
         u.setRoles(roles);
-
-        add(u);
+        try {
+            add(u);
+        } catch (Throwable exception) {
+            //root user already exists
+            LOGGER.info("Root user already exists. Continue...");
+        }
     }
 
     @Override
