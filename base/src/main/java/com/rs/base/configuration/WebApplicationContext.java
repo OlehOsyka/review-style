@@ -1,13 +1,15 @@
 package com.rs.base.configuration;
 
 import com.rs.core.exception.RestGlobalExceptionResolver;
-import org.joda.time.Period;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+
+import java.util.Properties;
 
 /**
  * Author: Oleh Osyka
@@ -39,6 +41,11 @@ public class WebApplicationContext extends WebMvcConfigurerAdapter {
     public FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/pages/");
+        freeMarkerConfigurer.setFreemarkerSettings(new Properties() {
+            {
+                setProperty("auto_import", "/spring.ftl as spring");
+            }
+        });
         return freeMarkerConfigurer;
     }
 }

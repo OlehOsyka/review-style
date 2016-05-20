@@ -9,6 +9,9 @@ public class UserWithToken extends User {
 
     private String token;
 
+    public UserWithToken() {
+    }
+
     public UserWithToken(User user) {
         setEmail(user.getEmail());
         setRoles(user.getRoles());

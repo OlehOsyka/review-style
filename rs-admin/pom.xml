@@ -10,6 +10,39 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rs-admin</artifactId>
+    <version>${build.version}</version>
+    <name>RS Auth Microservice</name>
+    <packaging>jar</packaging>
 
+    <properties>
+        <postgres.driver>9.4.1208</postgres.driver>
+    </properties>
+
+    <dependencies>
+        <!--Core-->
+        <dependency>
+            <groupId>com.osyka</groupId>
+            <artifactId>core</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+
+        <!--Custom dependency-->
+        <!--Override PostgreSQL driver-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.driver}</version> <!--Java8-->
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
