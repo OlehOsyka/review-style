@@ -28,7 +28,7 @@ import java.util.Properties;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @PropertySource("classpath:persistence.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.chi.pay", repositoryFactoryBeanClass = BaseJpaRepositoryFactoryBean.class)
+@EnableJpaRepositories(basePackages = "com.rs.admin", repositoryFactoryBeanClass = BaseJpaRepositoryFactoryBean.class)
 public class PersistenceApplicationContext {
 
     @Bean(destroyMethod = "close")
@@ -47,7 +47,7 @@ public class PersistenceApplicationContext {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("com.chi.pay");
+        entityManagerFactoryBean.setPackagesToScan("com.rs.admin");
 
         Properties jpaProperties = new Properties();
 
