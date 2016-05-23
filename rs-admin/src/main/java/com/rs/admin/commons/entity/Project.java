@@ -30,6 +30,7 @@ public class Project {
     private String name;
     private String description;
     private User owner;
+    private String vcsAdress;
     private Set<User> participants = Sets.newHashSet();
     private List<Issue> issues = Lists.newArrayList();
 
@@ -60,6 +61,16 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Project name is required! ")
+    public String getVcsAdress() {
+        return vcsAdress;
+    }
+
+    public void setVcsAdress(String vcsAdress) {
+        this.vcsAdress = vcsAdress;
     }
 
     @ManyToOne

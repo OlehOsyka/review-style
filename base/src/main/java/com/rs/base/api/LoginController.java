@@ -47,7 +47,4 @@ public class LoginController {
         return "dashboard";
     }
 
-    public static void main(String[] args) {
-        System.out.println("review-style".hashCode());
-    }
 }
