@@ -1,5 +1,7 @@
 package com.rs.admin.service.impl;
 
+import com.google.common.collect.Lists;
+import com.rs.admin.commons.entity.Issue;
 import com.rs.admin.commons.entity.Project;
 import com.rs.admin.persistence.dao.IProjectRepository;
 import com.rs.admin.service.IProjectService;
@@ -7,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.Collections.singletonList;
 
 /**
  * Author: Oleh Osyka
@@ -42,5 +47,21 @@ public class ProjectService implements IProjectService {
     @Override
     public void update(Project project) {
         projectRepository.update(project);
+    }
+
+    @Override
+    public void addIssue(Long id, Issue issue) {
+        addIssues(id, singletonList(issue));
+    }
+
+    @Override
+    public void addIssues(Long id, List<Issue> newIssues) {
+        Project project = get(id);
+        List<Issue> oldIssues = Optional.ofNullable(project.getIssues()).orElse(Lists.newArrayList());
+        for (Issue i : newIssues) {
+            oldIssues.remove(i);
+            oldIssues.add(i);
+        }
+        update(project);
     }
 }

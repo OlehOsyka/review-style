@@ -3,6 +3,9 @@ package com.rs.admin.commons.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,6 +28,7 @@ public class Issue {
     private User assigned;
     private Integer lineFrom;
     private Integer lineTo;
+    private String fileName;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -72,5 +76,49 @@ public class Issue {
 
     public void setLineTo(Integer lineTo) {
         this.lineTo = lineTo;
+    }
+
+    @Column(nullable = false)
+    @NotBlank(message = "File name is required! ")
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Boolean getReviewed() {
+        return isReviewed;
+    }
+
+    public void setReviewed(Boolean reviewed) {
+        isReviewed = reviewed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Issue issue = (Issue) o;
+
+        return new EqualsBuilder()
+                .append(id, issue.id)
+                .append(lineFrom, issue.lineFrom)
+                .append(lineTo, issue.lineTo)
+                .append(fileName, issue.fileName)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(lineFrom)
+                .append(lineTo)
+                .append(fileName)
+                .toHashCode();
     }
 }
