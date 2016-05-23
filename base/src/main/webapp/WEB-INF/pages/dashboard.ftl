@@ -30,7 +30,7 @@
 
 </head>
 
-<body class="sidebar-xs sidebar-opposite-visible">
+<body class="sidebar-opposite-visible">
 
 <#--Custom vars-->
 <@security.authentication property="principal" var="username" />

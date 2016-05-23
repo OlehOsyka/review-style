@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="sidebar-xs sidebar-opposite-visible">
+<body class="sidebar-opposite-visible">
 
 <#--Custom vars-->
 <@security.authentication property="principal" var="username" />
@@ -76,8 +76,7 @@
             <div class="page-header">
                 <div class="page-header-content">
                     <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Add project</span>
-                            - Commits</h4>
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Add project</span></h4>
                     </div>
                 </div>
 
@@ -92,14 +91,14 @@
                 <div class="panel panel-flat">
 
                     <div class="panel-body">
-                        <form class="form-horizontal" action="#">
+                        <form class="form-horizontal" action="<@spring.url '/public/project/add'/>" method="post">
                             <fieldset class="content-group">
                                 <legend class="text-bold">Add projects</legend>
 
                                 <div class="form-group">
                                     <label class="control-label col-lg-2">Project name</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="project-name">
+                                        <input type="text" class="form-control" name="name">
                                     </div>
                                     <span class="label bg-teal help-inline">Only latin chars, numbers, [ ] - </span>
                                 </div>
@@ -124,14 +123,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-2">VCS Adress</label>
                                     <div class="col-lg-8">
-                                        <input type="url" class="form-control" placeholder="ex. https://github.com/OlehOsyka/review-style.git" name="project-vcs-adress">
+                                        <input type="url" class="form-control" placeholder="ex. https://github.com/OlehOsyka/review-style.git" name="vcsAdress">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-lg-2">Description</label>
                                     <div class="col-lg-8">
-                                        <textarea rows="5" cols="5" class="form-control" placeholder="Project description" name="project-description"></textarea>
+                                        <textarea rows="5" cols="5" class="form-control" placeholder="Project description" name="description"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -162,6 +161,6 @@
 
 </body>
 <#--Main script-->
-<script type="text/javascript" src="/resources/assets/js/core/pages/dashboard.js"></script>
+<script type="text/javascript" src="/resources/assets/js/core/pages/project_add.js"></script>
 <#--End main scripts-->
 </html>
