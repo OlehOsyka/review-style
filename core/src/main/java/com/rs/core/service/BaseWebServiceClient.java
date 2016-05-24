@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 public class BaseWebServiceClient {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private RestOperations restTemplate;
 
     private HttpHeaders httpHeaders;
     private String serviceUrl;
@@ -47,7 +48,7 @@ public class BaseWebServiceClient {
         return serviceUrl;
     }
 
-    public RestTemplate getRestTemplate() {
+    public RestOperations getRestTemplate() {
         return restTemplate;
     }
 

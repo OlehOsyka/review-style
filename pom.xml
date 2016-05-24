@@ -14,6 +14,7 @@
         <module>rs-git</module>
         <module>rs-review</module>
         <module>rs-rules</module>
+        <module>rs-files</module>
     </modules>
 
     <parent>

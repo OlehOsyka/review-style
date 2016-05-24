@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @Configuration
 @PropertySource("classpath:service.properties")
-@ComponentScan(basePackages = "com.chi.admin")
+@ComponentScan(basePackages = "com.rs.admin")
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class AdminApplication {
 

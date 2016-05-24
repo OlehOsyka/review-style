@@ -10,6 +10,48 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rs-git</artifactId>
+    <version>${build.version}</version>
+    <name>RS Auth Microservice</name>
+    <packaging>jar</packaging>
 
+    <dependencies>
+        <!--Core-->
+        <dependency>
+            <groupId>com.osyka</groupId>
+            <artifactId>core</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+
+        <!--Custom dependency-->
+        <!-- File utils -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!-- GitHub client -->
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.75</version>
+        </dependency>
+
+        <!-- Git connector -->
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>4.3.1.201605051710-r</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
