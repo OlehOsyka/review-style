@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IGitRepositoryService {
 
-    void downloadRepo(String address);
+    void downloadRepo(String address, String projectName);
 
     List<Tree> getProjectTree(String projectName);
 

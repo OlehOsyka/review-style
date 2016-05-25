@@ -19,7 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -47,13 +47,13 @@ public class RestUserAuthentificationFilter extends UsernamePasswordAuthenticati
     protected boolean continueChainBeforeSuccessfulAuthentication;
     protected boolean postOnly;
 
-    protected RestTemplate restTemplate;
+    protected RestOperations restTemplate;
     protected String authUri;
     protected String tokenHeader;
 
     public RestUserAuthentificationFilter(AuthenticationManager authenticationManager,
                                           AuthenticationSuccessHandler authenticationSuccessHandler,
-                                          RestTemplate restTemplate,
+                                          RestOperations restTemplate,
                                           String authUri,
                                           String tokenHeader,
                                           String securedPath, String applicationAuthorizationHeader, String applicationAuthorizationToken) {

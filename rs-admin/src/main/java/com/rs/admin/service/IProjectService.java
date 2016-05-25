@@ -12,7 +12,5 @@ import java.util.List;
  * Time: 3:30 PM
  */
 public interface IProjectService extends BaseService<Project, Long> {
-    void addIssue(Long id, Issue issue);
 
-    void addIssues(Long id, List<Issue> issues);
 }

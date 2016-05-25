@@ -10,7 +10,8 @@
     <title>Review Style</title>
 
     <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
     <link href="/resources/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="/resources/assets/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/resources/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">
@@ -26,11 +27,21 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
+    <script type="text/javascript" src="/resources/assets/js/core/libraries/jquery_ui/core.min.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/core/libraries/jquery_ui/effects.min.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/plugins/extensions/cookie.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/plugins/forms/styling/switchery.min.js"></script>
     <script type="text/javascript" src="/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/plugins/trees/fancytree_all.min.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/plugins/trees/fancytree_childcounter.js"></script>
 
     <script type="text/javascript" src="/resources/assets/js/core/app.js"></script>
-    <script type="text/javascript" src="/resources/assets/js/pages/form_inputs.js"></script>
+    <script type="text/javascript" src="/resources/assets/js/pages/extra_trees.js"></script>
     <!-- /theme JS files -->
+
+    <#--Link to data-->
+    <input id="tree-url" type="hidden" data-url="<@spring.url '/public/project/add'/>"/>
 
 </head>
 
@@ -76,7 +87,8 @@
             <div class="page-header">
                 <div class="page-header-content">
                     <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Add project</span></h4>
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span
+                                class="text-semibold">Add project</span></h4>
                     </div>
                 </div>
 
@@ -91,54 +103,12 @@
                 <div class="panel panel-flat">
 
                     <div class="panel-body">
-                        <form class="form-horizontal" action="<@spring.url '/public/project/add'/>" method="post">
-                            <fieldset class="content-group">
-                                <legend class="text-bold">Add projects</legend>
 
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">Project name</label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name">
-                                    </div>
-                                    <span class="label bg-teal help-inline">Only latin chars, numbers, [ ] - </span>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">Owner</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" readonly="readonly" value="${username}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">VCS</label>
-                                    <div class="col-lg-8">
-                                        <select name="project-vcs" class="form-control">
-                                            <option value="opt1">Git</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">VCS Adress</label>
-                                    <div class="col-lg-8">
-                                        <input type="url" class="form-control" placeholder="ex. https://github.com/OlehOsyka/review-style.git" name="vcsAddress">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">Description</label>
-                                    <div class="col-lg-8">
-                                        <textarea rows="5" cols="5" class="form-control" placeholder="Project description" name="description"></textarea>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+                            <div class="panel-body">
+                                <div class="tree-ajax well border-left-info border-left-lg"></div>
                             </div>
-                        </form>
+                        </div>
+
                     </div>
                 </div>
                 <!-- /form horizontal -->

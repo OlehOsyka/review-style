@@ -2,10 +2,13 @@ package com.rs.admin.commons.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+import static javax.persistence.GenerationType.AUTO;
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
@@ -14,8 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Time: 5:45 PM
  */
 @Entity
-@Table(name = "user_roles",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_role_id", "role", "email"}))
+@Table(name = "user_roles")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "roleId")
 public class UserRole implements Serializable {
 
@@ -35,7 +37,7 @@ public class UserRole implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "email")
+    @JoinColumn(name = "id")
     public User getUser() {
         return user;
     }
@@ -53,5 +55,27 @@ public class UserRole implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserRole userRole = (UserRole) o;
+
+        return new EqualsBuilder()
+                .append(user, userRole.user)
+                .append(role, userRole.role)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(user)
+                .append(role)
+                .toHashCode();
     }
 }

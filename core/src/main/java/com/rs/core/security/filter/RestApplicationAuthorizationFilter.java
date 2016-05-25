@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +25,9 @@ public class RestApplicationAuthorizationFilter implements Filter {
     private final String authUri;
     private final List<String> cachedAppKeys;
 
-    protected RestTemplate restTemplate;
+    protected RestOperations restTemplate;
 
-    public RestApplicationAuthorizationFilter(RestTemplate restTemplate,
+    public RestApplicationAuthorizationFilter(RestOperations restTemplate,
                                               String authUri,
                                               String applicationAuthorizationHeader,
                                               String applicationAuthorizationToken) {

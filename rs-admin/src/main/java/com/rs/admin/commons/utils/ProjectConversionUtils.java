@@ -20,7 +20,7 @@ public final class ProjectConversionUtils {
         project.setId(coreProject.getId());
         project.setName(coreProject.getName());
         project.setDescription(coreProject.getDescription());
-        project.setVcsAdress(coreProject.getVcsAdress());
+        project.setVcsAddress(coreProject.getVcsAddress());
         project.setOwner(convertToUser(coreProject.getOwner()));
         project.setParticipants(convertToParticipants(coreProject.getParticipants()));
         project.setIssues(IssueConversionUtils.convertToIssues(coreProject.getIssues()));

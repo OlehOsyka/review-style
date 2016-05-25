@@ -24,7 +24,7 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.session.SessionManagementFilter;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  * Author: Oleh Osyka
@@ -49,7 +49,7 @@ public class SecurityApplicationContext extends WebSecurityConfigurerAdapter {
     protected String serviceName;
 
     @Autowired
-    protected RestTemplate restTemplate;
+    protected RestOperations restTemplate;
     @Autowired
     private AuthenticationSuccessHandler authenticationSuccessHandler;
 

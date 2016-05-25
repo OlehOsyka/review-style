@@ -16,4 +16,9 @@ public final class ApiErrorCodes {
     public static final int DOWNLOAD_REPOSITORY_FAILED = 10151;
     public static final int GET_CONTRIBUTORS_FAILED = 10152;
     public static final int CONNECT_FAILED = 10153;
+    public static final int EMPTY_TREE = 10154;
+
+    // Base 20100-...
+    public static final int EMPTY_VCS_ADDRESS = 20100;
+    public static final int EMPTY_PROJECT_NAME = 20101;
 }

@@ -43,7 +43,21 @@ public class GitRepositoryService implements IGitRepositoryService {
     }
 
     @Override
-    public void downloadRepo(String address) {
+    public void downloadRepo(String address, String projectName) {
+        gitDirectory = new File(gitRepositoryDirectory + File.separator + projectName);
+        try {
+            if (gitDirectory.list().length > 0) {
+                // empty old directory
+                FileUtils.forceDelete(gitDirectory);
+            }
+            // remake directories
+            FileUtils.forceMkdir(gitDirectory);
+        } catch (IOException e) {
+            String message = "Can't make directory to download repository for " + address;
+            LOGGER.error(message, e);
+            throw new RestException(message + e.getMessage(), INTERNAL_SERVER_ERROR.value(), DOWNLOAD_REPOSITORY_FAILED);
+        }
+
         LOGGER.info("Cloning from " + address + " to " + gitRepositoryDirectory);
         try (Git result = Git.cloneRepository()
                 .setURI(address)

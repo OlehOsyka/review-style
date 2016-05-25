@@ -1,8 +1,8 @@
 package com.rs.admin.api;
 
 
+import com.rs.admin.service.IAdminService;
 import com.rs.admin.service.IProjectService;
-import com.rs.admin.service.impl.IssueService;
 import com.rs.core.commons.dto.JsonApiResponse;
 import com.rs.core.commons.dto.admin.Issue;
 import com.rs.core.commons.dto.admin.Project;
@@ -28,12 +28,12 @@ public class ProjectController {
     @Autowired
     private IProjectService projectService;
     @Autowired
-    private IssueService issueService;
+    private IAdminService adminService;
 
     @ResponseStatus(OK)
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public JsonApiResponse projectAdd(@RequestBody Project project) {
-        projectService.add(convertToProject(project));
+        adminService.initProject(convertToProject(project));
         return JsonApiResponse.newResponse()
                 .successfull()
                 .statusCode(OK.value())
@@ -45,8 +45,7 @@ public class ProjectController {
     public JsonApiResponse projectAddIssue(@PathVariable("id") Long id,
                                            @RequestBody Issue issue) {
         com.rs.admin.commons.entity.Issue newIssue = convertToIssue(issue);
-        issueService.add(newIssue);
-        projectService.addIssue(id, newIssue);
+        adminService.addIssue(id, newIssue);
         return JsonApiResponse.newResponse()
                 .successfull()
                 .statusCode(OK.value())
@@ -58,8 +57,7 @@ public class ProjectController {
     public JsonApiResponse projectAddIssues(@PathVariable("id") Long id,
                                             @RequestBody List<Issue> issues) {
         List<com.rs.admin.commons.entity.Issue> newIssues = convertToIssues(issues);
-        issueService.add(newIssues);
-        projectService.addIssues(id, newIssues);
+        adminService.addIssues(id, newIssues);
         return JsonApiResponse.newResponse()
                 .successfull()
                 .statusCode(OK.value())

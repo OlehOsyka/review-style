@@ -2,12 +2,19 @@ package com.rs.core.service.impl;
 
 import com.rs.core.commons.dto.JsonApiResponse;
 import com.rs.core.commons.dto.admin.Project;
+import com.rs.core.commons.dto.auth.User;
 import com.rs.core.service.BaseWebServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpMethod.POST;
 
@@ -26,7 +33,20 @@ public class WebAdminService extends BaseWebServiceClient {
     }
 
     public void projectAdd(Project project) {
-        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/user/register", POST, new HttpEntity<>(project, getRequestHeaders()), JsonApiResponse.class);
-        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/user/register': " + exchange.getBody().isResult());
+        if (project.getOwner() == null) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User user = new User();
+            user.setEmail(String.valueOf(authentication.getPrincipal()));
+            user.setRoles(authentication.getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.toList()));
+            project.setOwner(user);
+        }
+        if (CollectionUtils.isEmpty(project.getParticipants())) {
+            project.getParticipants().add(project.getOwner());
+        }
+        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/add", POST, new HttpEntity<>(project, getRequestHeaders()), JsonApiResponse.class);
+        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/add': " + exchange.getBody().isResult());
     }
 }

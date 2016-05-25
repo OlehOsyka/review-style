@@ -2,6 +2,7 @@ package com.rs.core.commons.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -73,6 +74,10 @@ public class JsonApiResponse {
 
     public <CLASS> CLASS getData(Class<CLASS> clazz) throws ClassCastException {
         return new ObjectMapper().convertValue(data, clazz);
+    }
+
+    public <CLASS> CLASS getData(TypeReference<CLASS> toValueTypeRef) throws ClassCastException {
+        return new ObjectMapper().convertValue(data, toValueTypeRef);
     }
 
     public void setData(Object data) {

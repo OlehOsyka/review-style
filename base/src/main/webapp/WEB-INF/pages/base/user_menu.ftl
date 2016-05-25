@@ -5,7 +5,7 @@
             <div class="media-body">
                 <span class="media-heading text-semibold">${username}</span>
                 <div class="text-size-mini text-muted">
-                    <i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+                    <i class="icon-pin text-size-small"></i> &nbsp;Kharkiv, UA
                 </div>
             </div>
 

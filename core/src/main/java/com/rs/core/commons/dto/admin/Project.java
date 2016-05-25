@@ -22,7 +22,7 @@ public class Project {
     private String name;
     private String description;
     private User owner;
-    private String vcsAdress;
+    private String vcsAddress;
     private Set<User> participants = Sets.newHashSet();
     private List<Issue> issues = Lists.newArrayList();
 
@@ -59,12 +59,12 @@ public class Project {
         this.owner = owner;
     }
 
-    public String getVcsAdress() {
-        return vcsAdress;
+    public String getVcsAddress() {
+        return vcsAddress;
     }
 
-    public void setVcsAdress(String vcsAdress) {
-        this.vcsAdress = vcsAdress;
+    public void setVcsAddress(String vcsAddress) {
+        this.vcsAddress = vcsAddress;
     }
 
     public Set<User> getParticipants() {

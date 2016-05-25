@@ -4,6 +4,7 @@ import com.rs.admin.commons.entity.Issue;
 import com.rs.admin.persistence.dao.IIssueRepository;
 import com.rs.admin.service.IIssueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * Date: 5/23/2016
  * Time: 5:43 PM
  */
+@Service
 public class IssueService implements IIssueService {
 
     @Autowired

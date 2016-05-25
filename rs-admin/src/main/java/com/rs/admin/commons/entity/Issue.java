@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static javax.persistence.GenerationType.AUTO;
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
@@ -29,10 +30,10 @@ public class Issue {
     private Integer lineFrom;
     private Integer lineTo;
     private String fileName;
+    private Project project;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true, nullable = false)
     public Long getId() {
         return id;
     }
@@ -51,7 +52,7 @@ public class Issue {
 
     @ManyToOne
     @JoinColumn(name = "assigned",
-            referencedColumnName = "email",
+            referencedColumnName = "id",
             nullable = false)
     @NotNull(message = "Assigning is required! ")
     public User getAssigned() {
@@ -94,6 +95,16 @@ public class Issue {
 
     public void setReviewed(Boolean reviewed) {
         isReviewed = reviewed;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     @Override

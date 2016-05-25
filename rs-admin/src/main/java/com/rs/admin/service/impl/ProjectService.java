@@ -49,19 +49,4 @@ public class ProjectService implements IProjectService {
         projectRepository.update(project);
     }
 
-    @Override
-    public void addIssue(Long id, Issue issue) {
-        addIssues(id, singletonList(issue));
-    }
-
-    @Override
-    public void addIssues(Long id, List<Issue> newIssues) {
-        Project project = get(id);
-        List<Issue> oldIssues = Optional.ofNullable(project.getIssues()).orElse(Lists.newArrayList());
-        for (Issue i : newIssues) {
-            oldIssues.remove(i);
-            oldIssues.add(i);
-        }
-        update(project);
-    }
 }
