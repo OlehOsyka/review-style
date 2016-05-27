@@ -28,10 +28,21 @@ public class ProjectController {
         return "project_add";
     }
 
+    @RequestMapping(value = "/project/{name}/files")
+    public String projectFileManagerPage(@PathVariable("name") String projectName) {
+        return "project_file_manager";
+    }
+
     @RequestMapping(value = "/public/project/add", method = RequestMethod.POST)
     public String projectAdd(Project project) {
         projectService.add(project);
         return "dashboard";
+    }
+
+    @RequestMapping(value = "/public/project/{email}/get", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Project> projectGet(@PathVariable("email") String email) {
+        return projectService.getForUser(email);
     }
 
     @RequestMapping(value = "/public/project/{projectName}/tree", method = RequestMethod.GET)

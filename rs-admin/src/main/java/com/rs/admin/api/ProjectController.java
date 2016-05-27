@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.rs.admin.commons.utils.IssueConversionUtils.convertToIssue;
 import static com.rs.admin.commons.utils.IssueConversionUtils.convertToIssues;
@@ -62,5 +63,15 @@ public class ProjectController {
                 .successfull()
                 .statusCode(OK.value())
                 .data(null);
+    }
+
+    @ResponseStatus(OK)
+    @RequestMapping(value = "/get/{email}", method = RequestMethod.GET)
+    public JsonApiResponse projectGetByEmail(@PathVariable("email") String email) {
+        List<Project> projects = adminService.findByUser(email);
+        return JsonApiResponse.newResponse()
+                .successfull()
+                .statusCode(OK.value())
+                .data(projects);
     }
 }

@@ -26,7 +26,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="/resources/assets/images/image.png" alt="">
-                    <span>${username}</span>
+                    <span id="user-email">${username}</span>
                     <i class="caret"></i>
                 </a>
 

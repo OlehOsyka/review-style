@@ -14,5 +14,9 @@ public interface IProjectService {
 
     void add(Project project);
 
+    void get(String projectName);
+
     List<Tree> getTree(String projectName);
+
+    List<Project> getForUser(String email);
 }

@@ -1,5 +1,6 @@
 package com.rs.core.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.rs.core.commons.dto.JsonApiResponse;
 import com.rs.core.commons.dto.admin.Project;
 import com.rs.core.commons.dto.auth.User;
@@ -14,8 +15,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 /**
@@ -48,5 +52,15 @@ public class WebAdminService extends BaseWebServiceClient {
         }
         ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/add", POST, new HttpEntity<>(project, getRequestHeaders()), JsonApiResponse.class);
         LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/add': " + exchange.getBody().isResult());
+    }
+
+    public List<Project> projectGet(String email) {
+        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/get/" + email, GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
+        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/add': " + exchange.getBody().isResult());
+        return Optional.ofNullable(exchange.getBody())
+                .filter(JsonApiResponse::isResult)
+                .map(response -> response.getData(new TypeReference<List<Project>>() {
+                }))
+                .orElseGet(() -> null);
     }
 }

@@ -17,4 +17,6 @@ public interface IUserService extends BaseService<User, String> {
     User getByEmail(String email);
 
     List<User> getParticipantsByEmail(List<String> email);
+
+    User getUserByEmailAndFetchProjects(String email);
 }

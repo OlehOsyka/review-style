@@ -52,8 +52,18 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public void get(String projectName) {
+        //todo
+    }
+
+    @Override
     public List<Tree> getTree(String projectName) {
         return vcsService.projectTree(projectName);
 
+    }
+
+    @Override
+    public List<Project> getForUser(String email) {
+        return adminService.projectGet(email);
     }
 }

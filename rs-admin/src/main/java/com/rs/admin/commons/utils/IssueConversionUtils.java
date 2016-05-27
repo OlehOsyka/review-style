@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.rs.admin.commons.utils.UserConversionUtils.convertFromUser;
 import static com.rs.admin.commons.utils.UserConversionUtils.convertToUser;
 
 /**
@@ -28,9 +29,25 @@ public final class IssueConversionUtils {
         return issue;
     }
 
+    public static com.rs.core.commons.dto.admin.Issue convertFromIssue(Issue issue) {
+        com.rs.core.commons.dto.admin.Issue coreIssue = new com.rs.core.commons.dto.admin.Issue();
+        coreIssue.setId(issue.getId());
+        coreIssue.setAssigned(convertFromUser(issue.getAssigned()));
+        coreIssue.setLineFrom(issue.getLineFrom());
+        coreIssue.setLineTo(issue.getLineTo());
+        coreIssue.setReviewed(issue.getReviewed());
+        return coreIssue;
+    }
+
     public static List<Issue> convertToIssues(Collection<com.rs.core.commons.dto.admin.Issue> coreIssues) {
         return coreIssues.stream()
                 .map(IssueConversionUtils::convertToIssue)
+                .collect(Collectors.toList());
+    }
+
+    public static List<com.rs.core.commons.dto.admin.Issue> convertFromIssues(Collection<Issue> issues) {
+        return issues.stream()
+                .map(IssueConversionUtils::convertFromIssue)
                 .collect(Collectors.toList());
     }
 

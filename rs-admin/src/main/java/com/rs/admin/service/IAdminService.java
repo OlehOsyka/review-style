@@ -4,6 +4,7 @@ import com.rs.admin.commons.entity.Issue;
 import com.rs.admin.commons.entity.Project;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Author: Oleh Osyka
@@ -16,4 +17,6 @@ public interface IAdminService {
     void addIssue(Long id, Issue issue);
 
     void addIssues(Long id, List<Issue> newIssues);
+
+    List<com.rs.core.commons.dto.admin.Project> findByUser(String email);
 }

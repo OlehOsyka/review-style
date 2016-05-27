@@ -59,4 +59,9 @@ public class UserService implements IUserService {
     public List<User> getParticipantsByEmail(List<String> email) {
         return userRepository.findByEmailIn(email);
     }
+
+    @Override
+    public User getUserByEmailAndFetchProjects(String email) {
+        return userRepository.findByEmailAndFetchProjectsEagerly(email);
+    }
 }

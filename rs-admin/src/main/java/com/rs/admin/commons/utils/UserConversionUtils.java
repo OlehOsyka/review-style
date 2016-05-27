@@ -32,9 +32,25 @@ public final class UserConversionUtils {
         return user;
     }
 
+    public static com.rs.core.commons.dto.auth.User convertFromUser(User user) {
+        com.rs.core.commons.dto.auth.User coreUser = new com.rs.core.commons.dto.auth.User();
+        coreUser.setEmail(user.getEmail());
+        coreUser.setRoles(user.getRoles()
+                .stream()
+                .map(UserRole::getRole)
+                .collect(Collectors.toList()));
+        return coreUser;
+    }
+
     public static Set<User> convertToParticipants(Collection<com.rs.core.commons.dto.auth.User> coreUsers) {
         return coreUsers.stream()
                 .map(UserConversionUtils::convertToUser)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<com.rs.core.commons.dto.auth.User> convertFromParticipants(Collection<User> users) {
+        return users.stream()
+                .map(UserConversionUtils::convertFromUser)
                 .collect(Collectors.toSet());
     }
 }
