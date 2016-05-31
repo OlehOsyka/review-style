@@ -75,7 +75,7 @@ public class GitRepositoryService implements IGitRepositoryService {
     @Override
     public List<Tree> getProjectTree(String projectName) {
         File f = new File(gitRepositoryDirectory + File.separator + projectName);
-        return addNewLevel(Arrays.stream(f.list()).collect(Collectors.toList()));
+        return addNewLevel(Arrays.stream(f.listFiles()).map(File::getAbsolutePath).collect(Collectors.toList()));
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GitRepositoryService implements IGitRepositoryService {
             File f = new File(s);
             if (f.isDirectory()) {
                 Tree treeNode = convertToTree(f);
-                treeNode.setChildren(addNewLevel(Arrays.stream(f.list()).collect(Collectors.toList())));
+                treeNode.setChildren(addNewLevel(Arrays.stream(f.listFiles()).map(File::getAbsolutePath).collect(Collectors.toList())));
                 tree.add(treeNode);
             } else {
                 tree.add(convertToTree(f));

@@ -5,17 +5,11 @@ $(document).ready(
     },
 
 // Print projects
-    $.ajax({
-        url: $('#project-get').data("url") + $('#user-email').text() + '/get',
-        type: 'GET',
-        dataType: 'application/json',
-        success: function (data) {
-            var list = $('#project-list-ul');
-            var result = data.data;
-            jQuery.each(result, function (index, value) {
-                list.append('<li><a href="' + $('#project-files').data("url") + value.name + '/files"><i class="icon-googleplus5"></i>' + value.name + '</a></li>');
-            });
-        }
+    $.getJSON($('#project-get').data("url") + '/get?email=' + $('#user-email').text(), function (data) {
+        var list = $('#project-list-ul');
+        jQuery.each(data, function (index, value) {
+            list.append('<li><a href="' + $('#project-files').data("url") + '/files?name=' + value.name + '"><i class="icon-folder"></i>' + value.name + '</a></li>');
+        });
     })
 )
 ;

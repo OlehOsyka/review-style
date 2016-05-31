@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.rs.admin.commons.utils.ProjectConversionUtils.convertFromProject;
 import static com.rs.admin.commons.utils.ProjectConversionUtils.convertFromProjects;
 import static java.util.Collections.singletonList;
 
@@ -88,6 +89,11 @@ public class AdminService implements IAdminService {
     public List<com.rs.core.commons.dto.admin.Project> findByUser(String email) {
         User user = userService.getUserByEmailAndFetchProjects(email);
         return convertFromProjects(user.getProjects());
+    }
+
+    @Override
+    public com.rs.core.commons.dto.admin.Project findByName(String name) {
+        return convertFromProject(projectService.getByName(name));
     }
 
 

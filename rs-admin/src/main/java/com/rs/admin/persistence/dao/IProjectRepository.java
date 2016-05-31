@@ -13,4 +13,5 @@ import java.util.List;
  * Time: 4:54 PM
  */
 public interface IProjectRepository extends BaseJpaRepository<Project, Long> {
+    Project findByName(String name);
 }

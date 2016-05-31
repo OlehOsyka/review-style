@@ -55,12 +55,21 @@ public class WebAdminService extends BaseWebServiceClient {
     }
 
     public List<Project> projectGet(String email) {
-        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/get/" + email, GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
-        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/add': " + exchange.getBody().isResult());
+        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/get?email=" + email, GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
+        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/get': " + exchange.getBody().isResult());
         return Optional.ofNullable(exchange.getBody())
                 .filter(JsonApiResponse::isResult)
                 .map(response -> response.getData(new TypeReference<List<Project>>() {
                 }))
+                .orElseGet(() -> null);
+    }
+
+    public Project projectNameGet(String projectName) {
+        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/project/get/one?name=" + projectName, GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
+        LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/project/get': " + exchange.getBody().isResult());
+        return Optional.ofNullable(exchange.getBody())
+                .filter(JsonApiResponse::isResult)
+                .map(response -> response.getData(Project.class))
                 .orElseGet(() -> null);
     }
 }

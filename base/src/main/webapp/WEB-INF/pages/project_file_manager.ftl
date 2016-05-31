@@ -40,8 +40,8 @@
     <script type="text/javascript" src="/resources/assets/js/pages/extra_trees.js"></script>
     <!-- /theme JS files -->
 
-    <#--Link to data-->
-    <input id="tree-url" type="hidden" data-url="<@spring.url '/public/project/add'/>"/>
+<#--Link to data-->
+    <input id="tree-url" type="hidden" data-url="<@spring.url '/public/project/tree?name='+project.name/>"/>
 
 </head>
 
@@ -88,7 +88,7 @@
                 <div class="page-header-content">
                     <div class="page-title">
                         <h4><i class="icon-arrow-left52 position-left"></i> <span
-                                class="text-semibold">Add project</span></h4>
+                                class="text-semibold">${project.name} File Tree</span></h4>
                     </div>
                 </div>
 
@@ -131,6 +131,6 @@
 
 </body>
 <#--Main script-->
-<script type="text/javascript" src="/resources/assets/js/core/pages/project_add.js"></script>
+<script type="text/javascript" src="/resources/assets/js/core/pages/project_file_manager.js"></script>
 <#--End main scripts-->
 </html>

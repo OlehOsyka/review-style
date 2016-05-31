@@ -38,8 +38,8 @@ public class RepositoryController {
     }
 
     @ResponseStatus(OK)
-    @RequestMapping(value = "/{projectName}/tree", method = RequestMethod.GET)
-    public JsonApiResponse projectTree(@PathVariable(value = "projectName") String projectName) {
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    public JsonApiResponse projectTree(@RequestParam(value = "projectName") String projectName) {
         List<Tree> projectTree = gitRepositoryService.getProjectTree(projectName);
         if (CollectionUtils.isEmpty(projectTree)) {
             throw new RestException("Can't get tree for project " + projectName, INTERNAL_SERVER_ERROR.value(), EMPTY_TREE);

@@ -19,4 +19,6 @@ public interface IAdminService {
     void addIssues(Long id, List<Issue> newIssues);
 
     List<com.rs.core.commons.dto.admin.Project> findByUser(String email);
+
+    com.rs.core.commons.dto.admin.Project findByName(String name);
 }

@@ -36,7 +36,7 @@ public class WebGitService extends BaseWebServiceClient implements WebVcsService
 
     @Override
     public List<Tree> projectTree(String projectName) {
-        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/repo/" + projectName + "/tree", GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
+        ResponseEntity<JsonApiResponse> exchange = getRestTemplate().exchange(getServiceUrl() + "/repo/tree?projectName=" + projectName, GET, new HttpEntity<>(getRequestHeaders()), JsonApiResponse.class);
         LOGGER.info("HTTP Status code " + exchange.getStatusCode() + ". Rest invocation result for command '/" + projectName + "/tree': " + exchange.getBody().isResult());
         return Optional.ofNullable(exchange.getBody())
                 .filter(JsonApiResponse::isResult)

@@ -49,4 +49,8 @@ public class ProjectService implements IProjectService {
         projectRepository.update(project);
     }
 
+    @Override
+    public Project getByName(String name) {
+        return projectRepository.findByName(name);
+    }
 }

@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface IProjectService extends BaseService<Project, Long> {
 
+    Project getByName(String name);
 }

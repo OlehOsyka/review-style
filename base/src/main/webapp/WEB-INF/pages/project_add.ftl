@@ -161,6 +161,6 @@
 
 </body>
 <#--Main script-->
-<script type="text/javascript" src="/resources/assets/js/core/pages/project_add.js"></script>
+<script type="text/javascript" src="/resources/assets/js/core/pages/project_file_manager.js"></script>
 <#--End main scripts-->
 </html>

@@ -66,12 +66,22 @@ public class ProjectController {
     }
 
     @ResponseStatus(OK)
-    @RequestMapping(value = "/get/{email}", method = RequestMethod.GET)
-    public JsonApiResponse projectGetByEmail(@PathVariable("email") String email) {
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public JsonApiResponse projectGetByEmail(@RequestParam("email") String email) {
         List<Project> projects = adminService.findByUser(email);
         return JsonApiResponse.newResponse()
                 .successfull()
                 .statusCode(OK.value())
                 .data(projects);
+    }
+
+    @ResponseStatus(OK)
+    @RequestMapping(value = "/get/one", method = RequestMethod.GET)
+    public JsonApiResponse projectGetByName(@RequestParam("name") String name) {
+        Project project = adminService.findByName(name);
+        return JsonApiResponse.newResponse()
+                .successfull()
+                .statusCode(OK.value())
+                .data(project);
     }
 }
