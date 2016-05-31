@@ -11,5 +11,45 @@
 
     <artifactId>rs-rules</artifactId>
 
+    <version>${build.version}</version>
+    <name>RS Rule Microservice</name>
+    <packaging>jar</packaging>
 
+    <dependencies>
+        <!--Core-->
+        <dependency>
+            <groupId>com.osyka</groupId>
+            <artifactId>core</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+
+        <!--Custom dependency-->
+        <!-- File utils -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.forge.roaster</groupId>
+            <artifactId>roaster-api</artifactId>
+            <version>2.18.7.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.forge.roaster</groupId>
+            <artifactId>roaster-jdt</artifactId>
+            <version>2.18.7.Final</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
