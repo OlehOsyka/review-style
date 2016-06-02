@@ -6,5 +6,5 @@ package com.rs.rules.commons.bean;
  * Time: 4:46 PM
  */
 public enum TokenAttributes {
-    NAME, ARGUMENTS, VARIABLE,PARAMETER
+    NAME, VARIABLE, PARAMETERS
 }

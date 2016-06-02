@@ -12,6 +12,26 @@ public class FoundIssue {
     private Integer lineFrom;
     private Integer lineTo;
 
+    public static FoundIssue newIssue() {
+        return new FoundIssue();
+    }
+
+    public FoundIssue empty() {
+        this.empty = true;
+        return this;
+    }
+
+    public FoundIssue in(int from, int to) {
+        this.lineFrom = from;
+        this.lineTo = to;
+        return this;
+    }
+
+    public FoundIssue priority(String priority) {
+        this.priority = priority;
+        return this;
+    }
+
     public boolean isEmpty() {
         return empty;
     }

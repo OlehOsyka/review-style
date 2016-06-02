@@ -1,7 +1,7 @@
 $(document).ready(
     // Highlight nav
     function () {
-        $('#nav-dashboard').addClass('active');
+        $('#nav-rules').addClass('active');
     },
 
 // Print projects

@@ -6,5 +6,5 @@ package com.rs.rules.commons.bean;
  * Time: 4:45 PM
  */
 public enum TokenTypes {
-    CLASS,METHOD,VARIABLE,PARAMETER,CLASS_ATTRIBUTE;
+    CLASS, METHOD, CLASS_ATTRIBUTE
 }
