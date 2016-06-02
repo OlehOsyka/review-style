@@ -12,7 +12,7 @@
                 <span>Issues</span></a></li>
             <li id="nav-review"><a href="../changelog.html"><i class="icon-embed2"></i>
                 <span>Review</span></a></li>
-            <li id="nav-rules"><a href="../changelog.html"><i class="icon-pencil5"></i>
+            <li id="nav-rules"><a href="<@spring.url '/rules'/>"><i class="icon-pencil5"></i>
                 <span>Rules</span></a></li>
             <!-- /main -->
 
