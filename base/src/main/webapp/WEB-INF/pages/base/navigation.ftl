@@ -8,9 +8,9 @@
             <li id="nav-dashboard"><a href="<@spring.url '/'/>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
             <li id="nav-analytics"><a href="../changelog.html"><i class="icon-chart"></i>
                 <span>Analytics</span></a></li>
-            <li id="nav-files"><a href="../changelog.html"><i class="icon-files-empty2"></i>
+            <li id="nav-issue"><a href="<@spring.url '/issue'/>"><i class="icon-files-empty2"></i>
                 <span>Issues</span></a></li>
-            <li id="nav-review"><a href="../changelog.html"><i class="icon-embed2"></i>
+            <li id="nav-review"><a href="<@spring.url '/file'/>"><i class="icon-embed2"></i>
                 <span>Review</span></a></li>
             <li id="nav-rules"><a href="<@spring.url '/rules'/>"><i class="icon-pencil5"></i>
                 <span>Rules</span></a></li>

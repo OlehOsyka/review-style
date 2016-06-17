@@ -100,7 +100,7 @@
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" name="name">
                                     </div>
-                                    <span class="label bg-teal help-inline">Only latin chars, numbers, [ ] - </span>
+                                    <span class="label bg-teal help-inline">Only latin chars, numbers, / \ [ ] - </span>
                                 </div>
 
 

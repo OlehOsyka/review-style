@@ -78,11 +78,11 @@
                 <div class="page-header-content">
                     <div class="page-title">
                         <h4><i class="icon-arrow-left52 position-left"></i>
-                            <span class="text-semibold">Dasboard</span>
+                            <span class="text-semibold">Rules</span>
                     </div>
 
                     <div class="heading-elements">
-                        <a href="<@spring.url '/project/add'/>" class="btn bg-blue heading-btn">New project</a>
+                        <a href="<@spring.url '/rule/add'/>" class="btn bg-blue heading-btn">New rule</a>
                     </div>
                 </div>
 
@@ -93,18 +93,54 @@
             <!-- Content area -->
             <div class="content">
 
-                <!-- Basic bar chart -->
-                <div id="charts" class="panel panel-flat">
+                <!-- Task manager table -->
+                <div id="rules" class="panel panel-white">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Commits for past period</h5>
+                        <h6 class="panel-title">Rules</h6>
                     </div>
 
-                    <div class="panel-body">
-                        <div class="chart-container">
-                            <div class="chart has-fixed-height" id="basic_bars"></div>
-                        </div>
-                    </div>
+                    <table class="table tasks-list table-lg">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Period</th>
+                            <th>Rule name</th>
+                            <th>Latest update</th>
+                            <th class="text-center text-muted" style="width: 30px;"><i class="icon-checkmark3"></i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>#25</td>
+                            <td>Today</td>
+                            <td>
+                                <div class="text-semibold"><a href="task_manager_detailed.html">Class name in CamelStyle</a></div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-transparent">
+                                    <div class="input-group-addon"><i class="icon-calendar2 position-left"></i></div>
+                                    <input type="text" class="form-control datepicker" value="12 June, 16">
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu9"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#"><i class="icon-alarm-add"></i> Check in</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><i class="icon-cross2"></i> Remove</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
+                <!-- /task manager table -->
+
 
                 <!-- Footer -->
             <#include "/base/footer.ftl">
@@ -127,6 +163,6 @@
 
 </body>
 <#--Main script-->
-<script type="text/javascript" src="/resources/assets/js/core/pages/dashboard.js"></script>
+<script type="text/javascript" src="/resources/assets/js/core/pages/rules.js"></script>
 <#--End main scripts-->
 </html>

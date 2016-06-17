@@ -10,7 +10,8 @@
     <title>Review Style</title>
 
     <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
     <link href="/resources/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="/resources/assets/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/resources/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">
@@ -26,18 +27,17 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script type="text/javascript" src="/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
-
+    <script type="text/javascript" src="/resources/assets/js/plugins/ui/prism.min.js"></script>
     <script type="text/javascript" src="/resources/assets/js/core/app.js"></script>
-    <script type="text/javascript" src="/resources/assets/js/pages/form_inputs.js"></script>
     <!-- /theme JS files -->
-
 </head>
 
 <body class="sidebar-opposite-visible">
 
 <#--Custom vars-->
 <@security.authentication property="principal" var="username" />
+<input type="hidden" id="project-get" data-url="<@spring.url '/public/project/'/>"/>
+<input type="hidden" id="project-files" data-url="<@spring.url '/project/'/>"/>
 <#--/custom vars-->
 
 <!-- Main navbar -->
@@ -76,7 +76,8 @@
             <div class="page-header">
                 <div class="page-header-content">
                     <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Add rule</span></h4>
+                        <h4><i class="icon-arrow-left52 position-left"></i>
+                            <span class="text-semibold">app.js</span>
                     </div>
                 </div>
 
@@ -86,37 +87,50 @@
 
             <!-- Content area -->
             <div class="content">
+                <div class="row">
 
-                <!-- Form horizontal -->
-                <div class="panel panel-flat">
+                    <div class="col-md-12">
+<pre class="language-java content-group line-numbers" data-line="24"><code>package com.rs.admin;
 
-                    <div class="panel-body">
-                        <form class="form-horizontal" action="<@spring.url '/public/rule/add'/>" method="post">
-                            <fieldset class="content-group">
-                                <legend class="text-bold">Add rules</legend>
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.client.RestOperations;
+import org.springframework.web.client.RestTemplate;
 
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">Rule name</label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name">
-                                    </div>
-                                </div>
+/**
+ * Author: Oleh Osyka
+ * Date: 5/20/2016
+ * Time: 3:28 PM
+ */
+@SpringBootApplication
+@Configuration
+@PropertySource({"classpath:credentials.properties", "classpath:service.properties"})
+@ComponentScan(basePackages = "com.rs.admin")
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+public class adminapplication {
 
-                                <div class="form-group">
-                                    <label class="control-label col-lg-2">Rule</label>
-                                    <div class="col-lg-8">
-                                        <textarea rows="7" cols="10" class="form-control" placeholder="Rule in pseudo language" name="rule"></textarea>
-                                    </div>
-                                </div>
-                            </fieldset>
+    @Bean
+    public RestOperations asyncRestTemplate() {
+        return new RestTemplate();
+    }
 
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
-                            </div>
-                        </form>
+    public static void main(String[] args) {
+        SpringApplication application = new SpringApplication(AdminApplication.class);
+        application.run(args);
+    }
+
+}
+</code></pre>
+
                     </div>
+
                 </div>
-                <!-- /form horizontal -->
 
                 <!-- Footer -->
             <#include "/base/footer.ftl">
@@ -128,6 +142,9 @@
         </div>
         <!-- /main content -->
 
+
+    <#include "/base/opposite_sidebar.ftl">
+
     </div>
     <!-- /page content -->
 
@@ -136,6 +153,6 @@
 
 </body>
 <#--Main script-->
-<script type="text/javascript" src="/resources/assets/js/core/pages/project_file_manager.js"></script>
+<script type="text/javascript" src="/resources/assets/js/core/pages/file.js"></script>
 <#--End main scripts-->
 </html>
